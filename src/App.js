@@ -1,4 +1,3 @@
-//Modified for Bootstrap integration
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import Directory from './components/DirectoryComponent';
@@ -27,4 +26,3 @@ class App extends Component {
 }
 
 export default App;
-//export {App};
