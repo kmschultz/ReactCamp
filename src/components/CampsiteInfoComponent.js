@@ -135,11 +135,10 @@ function RenderComments({comments, addComment, campsiteId}) {
                 { comments.map(comment => {
                         return (
                             <div key= {comment.id}>
-                            <p className="font-weight-bold">{ comment.text }</p>
-                            <p>--{ comment.author } <span className="font-italic small ml-1">
-                            {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
-                            </span></p>
-
+                                <p className="font-weight-bold">{ comment.text }</p>
+                                <p>--{ comment.author } <span className="font-italic small ml-1">
+                                {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
+                                </span></p>
                             </div>
                         );
                     })
