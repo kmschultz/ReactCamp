@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import { CAMPSITES } from '../shared/campsites';
+import { baseUrl } from '../shared/baseUrl';
 
 export const addComment = (campsiteId, rating, author, text) => ({
     type: ActionTypes.ADD_COMMENT,
@@ -14,14 +14,51 @@ export const addComment = (campsiteId, rating, author, text) => ({
 // Becasuse Redux Thunk is enabled, we can nest a function inside
 // another function as below:
 export const fetchCampsites = () => dispatch => {
-
     dispatch(campsitesLoading());
-    
-    // simulating a request to a server with a 2-sec delay
-    setTimeout(() => {
-        dispatch(addCampsites(CAMPSITES));
-    }, 2000);
+
+    return fetch(baseUrl + 'campsites')
+    .then(response => response.json())
+    .then(campsites => dispatch(addCampsites(campsites)));
 };
+
+export const fetchComments = () => dispatch => {    
+    return fetch(baseUrl + 'comments')
+    .then(response => response.json())
+    .then(comments => dispatch(addComments(comments)));
+};
+
+
+export const commentsFailed = errMess => ({
+    type: ActionTypes.COMMENTS_FAILED,
+    payload: errMess
+});
+
+export const addComments = comments => ({
+    type: ActionTypes.ADD_COMMENTS,
+    payload: comments
+});
+
+export const fetchPromotions = () => dispatch => {
+    dispatch(promotionsLoading());
+
+    return fetch(baseUrl + 'promotions')
+    .then(response => response.json())
+    .then(promotions => dispatch(addPromotions(promotions)));
+}
+
+export const promotionsLoading = () => ({
+    type: ActionTypes.PROMOTIONS_LOADING
+});
+
+export const promotionsFailed = errMess => ({
+    type: ActionTypes.PROMOTIONS_FAILED,
+    payload: errMess
+});
+
+export const addPromotions = promotions => ({
+    type: ActionTypes.ADD_PROMOTIONS,
+    payload: promotions
+});
 
 // Thunk not necessary for this one
 export const campsitesLoading = () => ({
