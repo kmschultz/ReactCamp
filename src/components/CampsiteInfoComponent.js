@@ -91,9 +91,9 @@ class CommentForm extends React.Component {
                                 </Col>
                             </Row>
                             <Row className="form-group">
-                                <Label htmlFor="feedback" md={2}>Your Feedback</Label>
+                                <Label htmlFor="text" md={2}>Your Feedback</Label>
                                 <Col md={10}>
-                                    <Control.textarea model=".feedback" id="feedback" name="feedback"
+                                    <Control.textarea model=".text" id="text" name="text"
                                         rows="6"
                                         className="form-control"
                                     />
